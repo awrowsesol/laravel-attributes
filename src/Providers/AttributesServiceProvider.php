@@ -46,8 +46,6 @@ class AttributesServiceProvider extends ServiceProvider
             return collect();
         });
 
-        // Register console commands
-        $this->registerCommands($this->commands);
     }
 
     /**
@@ -55,9 +53,20 @@ class AttributesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Register console commands
+        if ($this->app->runningInConsole()) {
+            $this->commands(array_keys($this->commands));
+        }
+
         // Publish Resources
-        $this->publishesConfig('rinvex/laravel-attributes');
-        $this->publishesMigrations('rinvex/laravel-attributes');
-        ! $this->autoloadMigrations('rinvex/laravel-attributes') || $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
+        $this->publishes([
+            realpath(__DIR__.'/../../config/config.php') => config_path('rinvex.attributes.php'),
+        ], 'config');
+
+        $this->publishes([
+            realpath(__DIR__.'/../../database/migrations') => database_path('migrations'),
+        ], 'migrations');
+
+        $this->loadMigrationsFrom(__DIR__.'/../../database/migrations');
     }
 }
