@@ -49,17 +49,17 @@
     ],
     "require": {
         "php": "^8.1.0",
-        "illuminate/console": "^9.0.0 || ^10.0.0 || ^11.0.0",
-        "illuminate/database": "^9.0.0 || ^10.0.0 || ^11.0.0",
+        "illuminate/console": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0",
+        "illuminate/database": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0",
         "opis/closure": "^4.2",
-        "rinvex/laravel-support": "^7.0.0",
+        "embeddedts/laravel-support": "*@dev",
         "spatie/eloquent-sortable": "^4.0.0",
         "spatie/laravel-sluggable": "^3.3.0",
         "spatie/laravel-translatable": "^6.0"
     },
     "require-dev": {
         "codedungeon/phpunit-result-printer": "^0.31.0",
-        "illuminate/container": "^9.0.0 || ^10.0.0",
+        "illuminate/container": "^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0",
         "orchestra/testbench": "^7.0.0",
         "phpunit/phpunit": "^11.0.1"
     },
@@ -89,5 +89,11 @@
         }
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+    "repositories": [
+        {
+            "type": "path",
+            "url": "plugins/laravel-support"
+        }
+    ]
 }
